@@ -22,6 +22,9 @@ import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTableFilterModule} from "mat-table-filter";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { UserAddComponent } from './users/user-add/user-add.component';
+import {MatButtonModule} from "@angular/material/button";
+import {CommonModule} from "@angular/common";
 
 const modules = [
   BrowserModule,
@@ -39,7 +42,9 @@ const modules = [
   MatFormFieldModule,
   MatInputModule,
   MatTableFilterModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatButtonModule,
+  CommonModule
 ];
 
 @NgModule({
@@ -49,7 +54,8 @@ const modules = [
     UserDetailsComponent,
     MessagesComponent,
     DashboardComponent,
-    UserSearchComponent
+    UserSearchComponent,
+    UserAddComponent
   ],
   imports: [...modules],
   exports: [...modules],
