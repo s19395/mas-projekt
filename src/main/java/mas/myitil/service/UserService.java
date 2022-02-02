@@ -1,32 +1,30 @@
 package mas.myitil.service;
 
+import lombok.extern.slf4j.Slf4j;
+import mas.myitil.model.Client;
 import mas.myitil.model.User;
 import mas.myitil.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.EnumSet;
+import javax.transaction.Transactional;
 import java.util.List;
 
-import static mas.myitil.model.UserType.EMPLOYEE;
-import static mas.myitil.model.UserType.TEAMLEADER;
-
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser() {
-        User k = new User();
+    @Transactional
+    public void addUser(User userDto) {
+        Client c = new Client();
+        
+        c.setEmail(userDto.getEmail());
 
-        k.setName("Test");
-        k.setSurname("Nazwisko");
-        k.setEmail("email");
-        k.setPhoneNumber("tel");
-        k.setUserType(EnumSet.of(EMPLOYEE, TEAMLEADER));
-
-        userRepository.save(k);
+        userRepository.save(userDto);
+        log.info(userDto + "saved to repo");
     }
 
     public List<User> findAll() {
