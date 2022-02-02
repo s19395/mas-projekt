@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import axios from "axios";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {map, Observable} from "rxjs";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-root',
@@ -9,29 +8,15 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'MyITIL';
 
-  url: string = '/';
-  itemsUrl: string = '';
+  constructor(
+    private breakpointObserver: BreakpointObserver
+  ) { }
 
-  constructor(private http: HttpClient) {
-    this.getResponse();
-  }
 
-  public async getResponse() {
-    axios.get('http://localhost:8080/greeting/', {
-      headers: {'crossDomain': true}
-    })
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  }
+  isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(map(result => result.matches));
 
 }

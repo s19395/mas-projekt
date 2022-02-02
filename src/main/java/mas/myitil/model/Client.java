@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
-@DiscriminatorValue("TeamLeader")
-public class TeamLeader extends User {
+@DiscriminatorValue("Client")
+public class Client extends User {
+
+
 }

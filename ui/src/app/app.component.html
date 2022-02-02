@@ -1,20 +1,90 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card bg-dark my-5">
-        <div class="card-body">
-          <h2 class="card-title text-center text-white py-3"></h2>
-          <ul class="text-center list-inline py-3">
-            <li class="list-inline-item">
-              <a routerLink="/users" class="btn btn-info">List Users</a>
-            </li>
-            <li class="list-inline-item">
-              <a routerLink="/adduser" class="btn btn-info">Add User</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+<div class="mat-typography app-frame mat-app-background">
+  <mat-toolbar class="navbar" color="primary">
+    <a class="title" href="#" target="_blank" style="text-decoration:none">{{title}}</a>
+    <mat-nav-list fxLayout="row" routerLinkActive="active">
+      <a class="nav-link">Placeholder</a>
+      <a class="nav-link">Placeholder</a>
+      <a class="nav-link">Placeholder</a>
+      <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+    </mat-nav-list>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidebar-mainbody">
+    <mat-sidenav class="side-body" mode="side" [opened]="!(isHandset$ | async)">
+      <mat-nav-list>
+
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-icon matListIcon>support_agent</mat-icon>
+              Tickets
+          </mat-expansion-panel-header>
+          <mat-list-item routerLink="/users" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Users
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-icon matListIcon>people_alt</mat-icon>
+            Users
+          </mat-expansion-panel-header>
+          <mat-list-item routerLink="/users" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Users
+              </div>
+            </div>
+          </mat-list-item>
+          <mat-list-item routerLink="/dashboard" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Dashboard
+              </div>
+            </div>
+          </mat-list-item>
+          <mat-list-item routerLink="/dashboard" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Add user
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-icon matListIcon>devices</mat-icon>
+            Equipment
+          </mat-expansion-panel-header>
+          <mat-list-item routerLink="/users" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Users
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-expansion-panel>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-body">
       <router-outlet></router-outlet>
-    </div>
-  </div>
+      <app-messages></app-messages>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

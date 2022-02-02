@@ -7,6 +7,6 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
-@DiscriminatorValue("Pracownik")
-public class Pracownik extends Osoba {
+@DiscriminatorValue("Employee")
+public class Employee extends User {
 }

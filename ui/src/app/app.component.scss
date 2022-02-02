@@ -1,0 +1,74 @@
+root {
+  margin: 2em;
+}
+
+.title {
+  font-size: 32px;
+  padding-left: 30px;
+  padding-right: 60px;
+}
+
+.navbar {
+  font-size: 16px;
+}
+
+a + a {
+  margin-left: 50px;
+}
+
+.mat-list-base {
+  padding-top: 0;
+}
+
+.main-toolbar {
+  font-size: 36px;
+  position: sticky;
+  top: 0; /* Sets the sticky toolbar to be on top */
+  z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+}
+
+.sidebard-mainbody {
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .side-body {
+    display: none;
+  }
+}
+
+.side-body {
+  width: 250px;
+}
+
+mat-sidenav-content {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+}
+
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-button-row {
+  text-decoration: none;
+}
+.mat-nav-list .mat-list-item:focus,
+.mat-action-list .mat-list-item:focus,
+.mat-list-option:focus {
+  background-color:rgba(233,30,99,0.15);
+  color: #f492b4;
+}
+
+.mat-icon {
+  margin-right: 10px;
+}
+
+.mat-expansion-indicator {
+  position: absolute;
+}
