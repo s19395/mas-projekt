@@ -12,7 +12,7 @@ export class UserSearchComponent implements OnInit {
   users$!: Observable<User[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: UsersService) {}
+  constructor(private userService: UsersService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -28,7 +28,7 @@ export class UserSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.heroService.searchUsers(term)),
+      switchMap((term: string) => this.userService.searchUsers(term)),
     );
   }
 }

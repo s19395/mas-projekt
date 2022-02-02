@@ -29,61 +29,56 @@ export class UsersService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.usersUrl}/list`)
       .pipe(
-        tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<User[]>('getHeroes', []))
+        tap(_ => this.log('fetched users')),
+        catchError(this.handleError<User[]>('getUsers', []))
       );
   }
 
   /** GET user by id. Will 404 if id not found */
-  getUser(id: number): User {
+  getUser(id: number): Observable<User> {
     const url = `${this.usersUrl}/${id}`;
-
-    axios.get<User>(url)
-      .then(response => {
-        this.log(`fetched user id=${id}`)
-        this.user = response.data
-      })
-      .catch(this.handleError<User>(`getUser id=${id}`));
-
-    return this.user;
+    return this.http.get<User>(url).pipe(
+      tap(_ => this.log(`fetched user id=${id}`)),
+      catchError(this.handleError<User>(`getUser id=${id}`))
+    );
   }
 
-  /** PUT: update the hero on the server */
+  /** PUT: update the user on the server */
   updateUser(user: User): Observable<any> {
     return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${user.id}`)),
+      tap(_ => this.log(`updated user id=${user.id}`)),
       catchError(this.handleError<any>('updateUser'))
     );
   }
 
-  /** POST: add a new hero to the server */
+  /** POST: add a new user to the server */
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
-      tap((newUser: User) => this.log(`added hero w/ id=${newUser.id}`)),
+      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
       catchError(this.handleError<User>('addUser'))
     );
   }
 
-  /** DELETE: delete the hero from the server */
+  /** DELETE: delete the user from the server */
   deleteUser(id: number): Observable<User> {
     const url = `${this.usersUrl}/${id}`;
 
     return this.http.delete<User>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      tap(_ => this.log(`deleted user id=${id}`)),
       catchError(this.handleError<User>('deleteUser'))
     );
   }
 
-  /* GET heroes whose name contains search term */
+  /* GET users whose name contains search term */
   searchUsers(term: string): Observable<User[]> {
     if (!term.trim()) {
-      // if not search term, return empty hero array.
+      // if not search term, return empty user array.
       return of([]);
     }
     return this.http.get<User[]>(`${this.usersUrl}?name=${term}`).pipe(
       tap(x => x.length ?
-        this.log(`found heroes matching "${term}"`) :
-        this.log(`no heroes matching "${term}"`)),
+        this.log(`found users matching "${term}"`) :
+        this.log(`no users matching "${term}"`)),
       catchError(this.handleError<User[]>('searchUsers', []))
     );
   }
