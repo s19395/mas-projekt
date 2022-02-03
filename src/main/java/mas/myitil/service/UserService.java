@@ -18,13 +18,9 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional
-    public void addUser(User userDto) {
-        Client c = new Client();
-        
-        c.setEmail(userDto.getEmail());
-
-        userRepository.save(userDto);
-        log.info(userDto + "saved to repo");
+    public void addUser(Client client) {
+        userRepository.save(client);
+        log.info("{} saved to repository", client);
     }
 
     public List<User> findAll() {
@@ -37,5 +33,10 @@ public class UserService {
 
     public User findUserByName(String name) throws Exception {
         return userRepository.findByName(name).orElseThrow(Exception::new);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+        log.info("User with id: {} deleted from repository", id);
     }
 }

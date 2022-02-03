@@ -1,6 +1,7 @@
 package mas.myitil.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
+@ToString(callSuper=true, includeFieldNames=true)
 @DiscriminatorValue("Client")
 public class Client extends User {
 

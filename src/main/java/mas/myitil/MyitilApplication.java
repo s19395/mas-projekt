@@ -30,7 +30,6 @@ public class MyitilApplication {
 	}
 
 	@Bean
-
 	public Docket get() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
@@ -38,5 +37,4 @@ public class MyitilApplication {
 				.apis(RequestHandlerSelectors.basePackage("mas.myitil"))
 				.build();
 	}
-
 }
