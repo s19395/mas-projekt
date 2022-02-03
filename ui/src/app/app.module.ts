@@ -25,6 +25,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UserAddComponent } from './users/user-add/user-add.component';
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
+import {MatSortModule} from "@angular/material/sort";
 
 const modules = [
   BrowserModule,
@@ -44,7 +45,8 @@ const modules = [
   MatTableFilterModule,
   MatSnackBarModule,
   MatButtonModule,
-  CommonModule
+  CommonModule,
+  MatSortModule
 ];
 
 @NgModule({

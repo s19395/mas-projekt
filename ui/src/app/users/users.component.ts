@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {User} from "../models/user";
 import {UsersService} from "./users.service";
-import {Observable, of} from "rxjs";
-import {MessageService} from "../messages/message.service";
-import axios from "axios";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements AfterViewInit {
+  @ViewChild(MatSort)
+  sort: MatSort;
+
   users: User[] = []
-  displayedColumns: string[] = ['id', 'name', 'surname', 'email'];
+  displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'phoneNumber', 'actions'];
   dataSource = new MatTableDataSource(this.users);
 
   applyFilter(event: Event) {
@@ -23,10 +24,12 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private usersService: UsersService
-  ) { }
+  ) {
+  }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
     this.getUsers();
+    this.dataSource.sort = this.sort;
   }
 
   getUsers(): void {
@@ -44,14 +47,13 @@ export class UsersComponent implements OnInit {
     this.usersService.addUser({ name } as User)
       .subscribe(user => {
         this.users.push(user);
+        this.dataSource.data.push(user);
       });
   }
 
   delete(user: User): void {
+    this.usersService.deleteUser(user).subscribe();
     this.users = this.users.filter(h => h !== user);
-    this.usersService.deleteUser(user.id).subscribe();
+    this.dataSource.data = this.users;
   }
-
-
-
 }

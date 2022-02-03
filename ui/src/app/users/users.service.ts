@@ -60,11 +60,9 @@ export class UsersService {
   }
 
   /** DELETE: delete the user from the server */
-  deleteUser(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
-
-    return this.http.delete<User>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted user id=${id}`)),
+  deleteUser(user: User): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/delete/${user.id}`, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted user id=${user.id}`)),
       catchError(this.handleError<User>('deleteUser'))
     );
   }

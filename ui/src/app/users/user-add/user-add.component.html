@@ -1,0 +1,45 @@
+<h2>Add User</h2>
+
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text"
+           id="name"
+           placeholder="Ex. Oskar"
+           required
+           [(ngModel)]="user.name" name="name"
+           #name>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Surname</mat-label>
+    <input matInput type="text"
+           id="surname"
+           placeholder="UserId or other recipient information"
+           required
+           [(ngModel)]="user.surname" name="surname"
+           #surname>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>email</mat-label>
+    <input matInput type="text"
+           id="email"
+           placeholder="Ex. Lenovo"
+           required
+           [(ngModel)]="user.email" name="email"
+           #email>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Phone Number</mat-label>
+    <input matInput type="text"
+           id="phoneNumber"
+           placeholder="Ex. T590"
+           required
+           [(ngModel)]="user.phoneNumber" name="phoneNumber"
+           #phoneNumber>
+  </mat-form-field>
+
+  <button mat-button type="submit" color="primary" [disabled]="!userForm.form.valid">Done</button>
+</form>
