@@ -1,4 +1,4 @@
-package mas.myitil.model;
+package mas.myitil.model.user;
 
 import lombok.Data;
 
@@ -7,6 +7,6 @@ import javax.persistence.Entity;
 
 @Data
 @Entity
-@DiscriminatorValue("TeamLeader")
-public class TeamLeader extends User {
+@DiscriminatorValue("Employee")
+public class Employee extends User {
 }

@@ -1,6 +1,6 @@
-package mas.myitil.model.repository;
+package mas.myitil.model.user.repository;
 
-import mas.myitil.model.User;
+import mas.myitil.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

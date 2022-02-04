@@ -1,4 +1,4 @@
-package mas.myitil.model;
+package mas.myitil.model.user;
 
 import lombok.Data;
 
@@ -15,11 +15,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USER")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User {
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", updatable = false, nullable = false)
-    private Long id;
+    @Column(name = "USER_ID", updatable = false, nullable = false)
+    private Long userId;
 
     @Column(name = "NAME", nullable = false)
     private String name;
