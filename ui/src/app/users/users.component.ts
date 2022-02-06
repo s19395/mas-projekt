@@ -13,7 +13,7 @@ export class UsersComponent implements AfterViewInit {
   @ViewChild(MatSort)
   sort: MatSort;
 
-  users: User[] = []
+  users: any[] = []
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'phoneNumber', 'actions'];
   dataSource = new MatTableDataSource(this.users);
 
@@ -34,7 +34,7 @@ export class UsersComponent implements AfterViewInit {
 
   getUsers(): void {
     this.usersService.getUsers()
-      .subscribe((users: User[]) => {
+      .subscribe((users: any[]) => {
           this.users = users;
           this.dataSource.data = users;
         }

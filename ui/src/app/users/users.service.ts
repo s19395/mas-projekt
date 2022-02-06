@@ -1,5 +1,5 @@
 import { Injectable} from '@angular/core';
-import {User} from "../models/user";
+import { User, UserDTO } from '../models/user';
 import { catchError, tap } from 'rxjs/operators';
 import {MessageService} from "../messages/message.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -34,19 +34,27 @@ export class UsersService {
       );
   }
 
+  getClientsAndEmployees(): Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>(`${this.usersUrl}/autocomplete`)
+      .pipe(
+        tap(_ => this.log('fetched users')),
+        catchError(this.handleError<UserDTO[]>('getUsers', []))
+      );
+  }
+
   /** GET user by id. Will 404 if id not found */
-  getUser(id: number): Observable<User> {
-    const url = `${this.usersUrl}/${id}`;
-    return this.http.get<User>(url).pipe(
+  getUser(id: number): Observable<any> {
+    const url = `${this.usersUrl}/details/${id}`;
+    return this.http.get<any>(url).pipe(
       tap(_ => this.log(`fetched user id=${id}`)),
-      catchError(this.handleError<User>(`getUser id=${id}`))
+      catchError(this.handleError<any>(`getUser id=${id}`))
     );
   }
 
   /** PUT: update the user on the server */
   updateUser(user: User): Observable<any> {
     return this.http.put(this.usersUrl, user, this.httpOptions).pipe(
-      tap(_ => this.log(`updated user id=${user.id}`)),
+      tap(_ => this.log(`updated user id=${user.userId}`)),
       catchError(this.handleError<any>('updateUser'))
     );
   }
@@ -61,8 +69,8 @@ export class UsersService {
 
   /** DELETE: delete the user from the server */
   deleteUser(user: User): Observable<User> {
-    return this.http.get<User>(`${this.usersUrl}/delete/${user.id}`, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted user id=${user.id}`)),
+    return this.http.get<User>(`${this.usersUrl}/delete/${user.userId}`, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted user id=${user.userId}`)),
       catchError(this.handleError<User>('deleteUser'))
     );
   }
@@ -105,6 +113,4 @@ export class UsersService {
       return of(result as T);
     };
   }
-
-
 }

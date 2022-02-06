@@ -1,5 +1,6 @@
 import {Component, Injectable} from '@angular/core';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from "@angular/material/snack-bar";
+import { CustomSnackBar } from '../custom/customsnackbar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,10 @@ export class MessageService {
 
   add(message: string) {
     this.messages.push(message);
-    this.openOneSnackBar(message);
+    this.openSnackBar(message);
   }
 
-  openOneSnackBar(message:string) {
+  openSnackBar(message:string) {
     this._snackBar.open(message, 'Dismiss', {
       duration: 3 * 1000,
       panelClass: ['snackbar'],

@@ -1,0 +1,73 @@
+<h2>Add Ticket</h2>
+
+<form (ngSubmit)="onSubmit()" #ticketForm="ngForm">
+    <div fxLayout="row">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput type="text"
+                 id="title"
+                 placeholder="Ex. PC not connecting to internet"
+                 required
+                 [(ngModel)]="ticket.title" name="title"
+                 #title>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea  matInput type="text" style="height: 100px"
+                     id="description"
+                     placeholder="Detailed information of a problem."
+                     required
+                     [(ngModel)]="ticket.description" name="description"
+          #description></textarea>
+        </mat-form-field>
+        <button mat-button type="submit" color="primary" [disabled]="!ticketForm.form.valid">Done</button>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Select</mat-label>
+          <mat-select id="status"
+                      required
+                      [(ngModel)]="ticket.ticketStatus" name="ticketStatus"
+                      #ticketStatus>
+            <mat-option value="OPEN">Open</mat-option>
+            <mat-option value="IN_PROGRESS">In Progress</mat-option>
+            <mat-option value="CLIENT_INPUT_REQUIRED">Client Input Required</mat-option>
+            <mat-option value="RESOLVED">Resolved</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Customer</mat-label>
+          <input type="text" matInput [formControl]="customerControl" [matAutocomplete]="auto1"
+                 id="customer"
+                 placeholder="Ex. T590"
+                 required
+                 [(ngModel)]="ticket.client" name="client"
+                 #client>
+          <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let customer of filteredCustomerOptions | async" [value]="customer">
+              {{customer.name}} {{customer.surname}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Employee</mat-label>
+          <input type="text" matInput [formControl]="employeeControl" [matAutocomplete]="auto2"
+                 id="employee"
+                 placeholder="Ex. T590"
+                 required
+                 [(ngModel)]="ticket.employee" name="employee"
+                 #employee>
+          <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let employee of filteredEmployeeOptions | async" [value]="employee">
+              {{employee.name}} {{employee.surname}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+</form>

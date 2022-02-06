@@ -1,7 +1,8 @@
 package mas.myitil.controller;
 
-import mas.myitil.model.user.Client;
+import mas.myitil.model.user.ClientDTO;
 import mas.myitil.model.user.User;
+import mas.myitil.model.user.UserDTO;
 import mas.myitil.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add")
-    public void addUser(@RequestBody Client client) {
+    public void addUser(@RequestBody ClientDTO client) throws Exception {
         userService.addUser(client);
     }
 
@@ -35,10 +36,13 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("/autocomplete")
+    public List<UserDTO> findAllClients() {
+        return userService.findAllClientsAndEmployees();
+    }
 
     @GetMapping("/delete/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
-
 }

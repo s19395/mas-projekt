@@ -9,7 +9,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule, MatNavList} from "@angular/material/list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { UsersComponent } from './users/users.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,6 +26,15 @@ import { UserAddComponent } from './users/user-add/user-add.component';
 import {MatButtonModule} from "@angular/material/button";
 import {CommonModule} from "@angular/common";
 import {MatSortModule} from "@angular/material/sort";
+import { CustomSnackBar } from './custom/customsnackbar.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { TicketAddComponent } from './tickets/ticket-add/ticket-add.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TicketDetailsComponent } from './tickets/ticket-details/ticket-details.component';
+import { NotesComponent } from './notes/notes.component';
 
 const modules = [
   BrowserModule,
@@ -46,7 +55,12 @@ const modules = [
   MatSnackBarModule,
   MatButtonModule,
   CommonModule,
-  MatSortModule
+  MatSortModule,
+  MatGridListModule,
+  MatSelectModule,
+  FlexLayoutModule,
+  MatAutocompleteModule,
+  ReactiveFormsModule
 ];
 
 @NgModule({
@@ -57,11 +71,17 @@ const modules = [
     MessagesComponent,
     DashboardComponent,
     UserSearchComponent,
-    UserAddComponent
+    UserAddComponent,
+    CustomSnackBar,
+    TicketsComponent,
+    TicketAddComponent,
+    TicketDetailsComponent,
+    NotesComponent
   ],
   imports: [...modules],
   exports: [...modules],
   providers: [],
+  entryComponents: [CustomSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

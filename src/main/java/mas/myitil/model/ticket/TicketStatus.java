@@ -12,7 +12,7 @@ public enum TicketStatus {
         this.name = name;
     }
 
-    public String getAssetCondition() {
+    public String getTicketStatusName() {
         return name;
     }
 }

@@ -1,0 +1,44 @@
+
+mat-form-field {
+  display: block;
+  font-size: 16px;
+  width: 150px;
+}
+mat-grid-tile {
+  display: flex;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.column {
+  width: 500px;
+}
+
+input {
+  padding: .5rem;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.actions{
+  width: 120px;
+  align-content: center;
+}
+
+.mat-button {
+  width: 40px;
+}
+
+.addNoteForm {
+  width: 400px;
+  height: 50px;
+}

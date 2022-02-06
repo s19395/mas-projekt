@@ -1,7 +1,8 @@
 package mas.myitil.model.ticket;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,26 +15,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "NOTE")
+@Table(name = "note")
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "NOTE_ID", updatable = false, nullable = false)
+    @Column(name = "note_id", updatable = false, nullable = false)
     private Long noteId;
 
-    @Column(name = "TITLE")
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "CONTENT")
+    @Column(name = "content")
     private String content;
 
-    @Column(name = "CREATED_AT")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="TICKET_ID")
-    @JsonBackReference
+    @JoinColumn(name="ticket_id")
+    @JsonManagedReference
     private Ticket ticket;
 }

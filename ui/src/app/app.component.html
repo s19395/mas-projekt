@@ -19,12 +19,21 @@
               <mat-icon matListIcon>support_agent</mat-icon>
               Tickets
           </mat-expansion-panel-header>
-          <mat-list-item routerLink="/users" class="mat-list-item" aria-current="false">
+          <mat-list-item routerLink="/tickets" class="mat-list-item" aria-current="false">
             <div class="mat-list-item-content">
               <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
               </div>
               <div class="mat-list-text">
-                Users
+                Table
+              </div>
+            </div>
+          </mat-list-item>
+          <mat-list-item routerLink="/tickets/add" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Add
               </div>
             </div>
           </mat-list-item>
@@ -35,7 +44,7 @@
             <mat-icon matListIcon>people_alt</mat-icon>
             Users
           </mat-expansion-panel-header>
-          <mat-list-item routerLink="/dashboard" class="mat-list-item" aria-current="false">
+          <mat-list-item *ngIf="false" routerLink="/dashboard" class="mat-list-item" aria-current="false">
             <div class="mat-list-item-content">
               <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
               </div>
@@ -69,12 +78,21 @@
             <mat-icon matListIcon>devices</mat-icon>
             Equipment
           </mat-expansion-panel-header>
-          <mat-list-item routerLink="/users" class="mat-list-item" aria-current="false">
+          <mat-list-item routerLink="/equipment" class="mat-list-item" aria-current="false">
             <div class="mat-list-item-content">
               <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
               </div>
               <div class="mat-list-text">
-                Users
+                Table
+              </div>
+            </div>
+          </mat-list-item>
+          <mat-list-item routerLink="/equipment/add" class="mat-list-item" aria-current="false">
+            <div class="mat-list-item-content">
+              <div mat-ripple="" class="mat-ripple mat-list-item-ripple">
+              </div>
+              <div class="mat-list-text">
+                Add
               </div>
             </div>
           </mat-list-item>
